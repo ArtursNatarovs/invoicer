@@ -6,7 +6,7 @@ from flask import render_template, flash, request, url_for, redirect
 
 @app.route('/')
 def home():
-    return 'changed it back localy'
+    return 'changed in different folder'
 
 
 
