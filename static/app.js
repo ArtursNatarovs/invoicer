@@ -12,5 +12,7 @@ function getData(vars){
   window.onload=function(){
     document.querySelector('.dropdown').addEventListener('click', function(event){
       console.log(event.target.id);
+      document.getElementById('nameHelp').innerHTML += 'some stuff';
+
     });
   };
