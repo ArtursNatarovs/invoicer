@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <form method="POST">
+    {{form.hidden_tag()}}
+    <label class="form-control" for="#">Tenants ID: {{user.id}}</label> <br>
+    {{form.email.label}}{{form.email(class="form-control", value=user.email)}}<br>
+    {{form.name.label}}{{form.name(class="form-control", value=user.name)}}<br>
+    {{form.last_name.label}}{{form.last_name(class="form-control", value=user.last_name)}}<br>
+    {{form.p_number.label}}{{form.p_number(class="form-control", value=user.p_number)}}<br>
+    {{form.line1.label}}{{form.line1(class="form-control", value=user.line1)}}<br>
+    {{form.line2.label}}{{form.line2(class="form-control", value=user.line2)}}<br>
+    {{form.postCode.label}}{{form.postCode(class="form-control", value=user.postCode)}}<br>
+    {{form.city.label}}{{form.city(class="form-control", value=user.city)}}<br>
+    {{form.submit(class="form-control")}}
+  </form>
+  <form action="{{url_for('update_tenant02')}}" method="POST">
+    <div class="row">
+      <div class="col-sm">
+        <label for="#">Tenants ID: {{user.id}}</label> <br>
+        <div class="input-group-prepend">
+          <label for="fullName">Tenants Name</label> <br>
+          <span class="input-group-text" id="inputGroupFileAddon01">Tenants Name</span>
+          <input class="form-control" type="text" name="firstName" value="{{user.name}}">
+          <input class="form-control" type="text" name="lastName" value="{{user.last_name}}">
+        </div>
+         <br>
+        <label for="">Tenants Addresse </label> <br>
+        <input class="form-control" type="text" name="line1" value="{{user.line1}}"> <br>
+        <input class="form-control" type="text" name="line2" value="{{user.line2}}"> <br>
+        <input class="form-control" type="text" name="city" value="{{user.city}}"> <br>
+        <label for="postcode">Post code</label>
+        <input class="form-control" type="text" name="postcode" value="{{user.postCode}}"> <br>
+        <input class="form-control" type="text" name="email" value="{{user.email}}"> <br>
+      </div>
+    </div>
+
+    <input type="submit" value="update" class="btn btn-success float-right">
+  </form>
+</div>
+{% endblock %}
