@@ -31,6 +31,7 @@ app.config.update(DEBUG=True,
                     MAIL_PASSWORD='Qw!2er34')
 
 db = SQLAlchemy(app)
+db.create_all()
 mail = Mail(app)
 Migrate(app,db)
 
@@ -93,13 +94,30 @@ class Salon(db.Model):
     city = db.Column(db.String)
 
 
+def salon_query():
+    if Salon.query.all():
+        return Salon.query.all()
+    else:
+        return 'No salon found'
+
+def salon_query():
+    if User.query.all():
+        return User.query.all()
+    else:
+        return 'No users found'
+
 @app.route('/')
 def index():
-    return render_template('index.html', users=User.query.all(), salons=Salon.query.all())
+    return render_template('index.html')
+
+
+@app.route('/send_invoice')
+def send_invoice():
+    return render_template('send_invoice.html', users=salon_query(), salons=salon_query())
 
 @app.route('/tenats')
 def tenants():
-    return render_template('tenants.html', users=User.query.all())
+    return render_template('tenants.html', users=salon_query())
 
 
 @app.route('/add_new_tenant', methods=['GET','POST'])
