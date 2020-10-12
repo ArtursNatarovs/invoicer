@@ -31,9 +31,17 @@ app.config.update(DEBUG=True,
                     MAIL_PASSWORD='Qw!2er34')
 
 db = SQLAlchemy(app)
-db.create_all()
+
 mail = Mail(app)
 Migrate(app,db)
+
+def initial_invoice():
+    if Invoices.query.all() == []:
+        first_invoice = Invoices()
+        db.session.add(first_invoice)
+        db.session.commit()
+    else:
+        pass
 
 class DataForm(FlaskForm):
     name = StringField('First Name',validators=[DataRequired()])
@@ -249,6 +257,8 @@ def show_invoices():
 
 
 if __name__ == '__main__':
+    db.create_all()
+    initial_invoice()
     app.run(debug=True)
 
 
